@@ -28,42 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            btnLogin = new System.Windows.Forms.Button();
-            btnCancel = new System.Windows.Forms.Button();
-            txtEmail = new System.Windows.Forms.TextBox();
-            txtPassword = new System.Windows.Forms.TextBox();
-            label3 = new System.Windows.Forms.Label();
-            label4 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
-            linkLabel1 = new System.Windows.Forms.LinkLabel();
+            label1 = new Label();
+            label2 = new Label();
+            btnLogin = new Button();
+            btnCancel = new Button();
+            txtEmail = new TextBox();
+            txtPassword = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(122, 197);
+            label1.Location = new Point(122, 197);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(46, 20);
+            label1.Size = new Size(46, 20);
             label1.TabIndex = 0;
             label1.Text = "Email";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(122, 256);
+            label2.Location = new Point(122, 256);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(70, 20);
+            label2.Size = new Size(70, 20);
             label2.TabIndex = 1;
             label2.Text = "Password";
             // 
             // btnLogin
             // 
-            btnLogin.Location = new System.Drawing.Point(208, 337);
-            btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnLogin.Location = new Point(208, 337);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new System.Drawing.Size(90, 28);
+            btnLogin.Size = new Size(90, 28);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -71,10 +71,10 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new System.Drawing.Point(328, 337);
-            btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnCancel.Location = new Point(328, 337);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(90, 28);
+            btnCancel.Size = new Size(90, 28);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -82,56 +82,56 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new System.Drawing.Point(208, 193);
-            txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtEmail.Location = new Point(208, 193);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new System.Drawing.Size(291, 27);
+            txtEmail.Size = new Size(291, 27);
             txtEmail.TabIndex = 4;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new System.Drawing.Point(208, 252);
-            txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtPassword.Location = new Point(208, 252);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new System.Drawing.Size(291, 27);
+            txtPassword.Size = new Size(291, 27);
             txtPassword.TabIndex = 5;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            label3.Location = new System.Drawing.Point(264, 43);
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.Location = new Point(264, 43);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(83, 28);
+            label3.Size = new Size(102, 28);
             label3.TabIndex = 6;
-            label3.Text = "FUStore";
+            label3.Text = "Sale Store";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Stencil", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            label4.Location = new System.Drawing.Point(161, 105);
+            label4.Font = new Font("Stencil", 16F, FontStyle.Bold);
+            label4.Location = new Point(161, 105);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(293, 32);
+            label4.Size = new Size(293, 32);
             label4.TabIndex = 7;
             label4.Text = "Log in to continue";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(194, 424);
+            label5.Location = new Point(194, 424);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(167, 20);
+            label5.Size = new Size(167, 20);
             label5.TabIndex = 8;
             label5.Text = "Don't have an account? ";
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new System.Drawing.Point(367, 424);
+            linkLabel1.Location = new Point(367, 424);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new System.Drawing.Size(63, 20);
+            linkLabel1.Size = new Size(63, 20);
             linkLabel1.TabIndex = 9;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Register";
@@ -139,9 +139,9 @@
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(606, 501);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(606, 501);
             Controls.Add(linkLabel1);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -152,9 +152,9 @@
             Controls.Add(btnLogin);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmLogin";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login Form";
             ResumeLayout(false);
             PerformLayout();

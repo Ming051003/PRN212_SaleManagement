@@ -14,7 +14,10 @@ namespace Repositories
     {
         Member GetMemberById(int memberID);
         Member GetMemberByEmail(string email);
-
         Member CheckLogin(string email, string password);
+        void AddMember(Member member);
+        void UpdateMember(Member member);
+        void DeleteMember(int memberID);
+        List<Member> GetAllMembers();
     }
 }

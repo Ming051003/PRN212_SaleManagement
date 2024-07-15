@@ -25,5 +25,46 @@ namespace DataAccessObjects
             }
         }
 
+        public void AddMember(Member member)
+        {
+            using (SaleStoreDbContext db = new SaleStoreDbContext())
+            {
+                db.Members.Add(member);
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteMember(int id)
+        {
+            using (SaleStoreDbContext db = new SaleStoreDbContext())
+            {
+                Member member = GetMemberById(id);
+                if (member != null)
+                {
+                    db.Members.Remove(member);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdateMember(Member member) 
+        {
+            using (SaleStoreDbContext db = new SaleStoreDbContext())
+            {
+                db.Members.Update(member);
+                db.SaveChanges();
+            }
+        }
+
+        public List<Member> GetAllMembers()
+        {
+            using(SaleStoreDbContext db = new SaleStoreDbContext())
+            {
+                return db.Members.ToList();
+            }
+        }
+
+
+
     }
 }
