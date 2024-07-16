@@ -38,6 +38,8 @@
             label3 = new Label();
             tbId = new TextBox();
             btnClear = new Button();
+            tbSearch = new TextBox();
+            btnSearchCategory = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCategory).BeginInit();
             SuspendLayout();
             // 
@@ -100,10 +102,10 @@
             // dgvCategory
             // 
             dgvCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategory.Location = new Point(444, 34);
+            dgvCategory.Location = new Point(515, 68);
             dgvCategory.Name = "dgvCategory";
             dgvCategory.RowHeadersWidth = 51;
-            dgvCategory.Size = new Size(515, 370);
+            dgvCategory.Size = new Size(436, 370);
             dgvCategory.TabIndex = 6;
             dgvCategory.CellClick += dgvCategory_CellClick;
             // 
@@ -134,11 +136,31 @@
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
+            // tbSearch
+            // 
+            tbSearch.Location = new Point(515, 32);
+            tbSearch.Name = "tbSearch";
+            tbSearch.Size = new Size(212, 27);
+            tbSearch.TabIndex = 18;
+            // 
+            // btnSearchCategory
+            // 
+            btnSearchCategory.Location = new Point(762, 28);
+            btnSearchCategory.Margin = new Padding(3, 4, 3, 4);
+            btnSearchCategory.Name = "btnSearchCategory";
+            btnSearchCategory.Size = new Size(114, 31);
+            btnSearchCategory.TabIndex = 17;
+            btnSearchCategory.Text = "Search";
+            btnSearchCategory.UseVisualStyleBackColor = true;
+            btnSearchCategory.Click += btnSearchCategory_Click;
+            // 
             // frmCategory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(985, 450);
+            Controls.Add(tbSearch);
+            Controls.Add(btnSearchCategory);
             Controls.Add(btnClear);
             Controls.Add(tbId);
             Controls.Add(label3);
@@ -169,5 +191,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbId;
         private Button btnClear;
+        private TextBox tbSearch;
+        private Button btnSearchCategory;
     }
 }

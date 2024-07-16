@@ -11,7 +11,7 @@ namespace DataAccessObjects
     {
         public List<Category> GetAllCategories()
         {
-            using(SaleStoreDbContext context = new SaleStoreDbContext())
+            using (SaleStoreDbContext context = new SaleStoreDbContext())
             {
                 return context.Categories.ToList();
             }
@@ -19,10 +19,39 @@ namespace DataAccessObjects
 
         public void AddCategoyry(Category category)
         {
-            using(SaleStoreDbContext context= new SaleStoreDbContext())
+            using (SaleStoreDbContext context = new SaleStoreDbContext())
             {
                 context.Categories.Add(category);
                 context.SaveChanges();
+            }
+        }
+
+        public Category GetCategoryByID(int categoyryId)
+        {
+            using (SaleStoreDbContext context = new SaleStoreDbContext())
+            {
+                return context.Categories.FirstOrDefault(c => c.CategoryId.Equals(categoyryId));
+            }
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            using (SaleStoreDbContext context = new SaleStoreDbContext())
+            {
+                context.Categories.Update(category);
+                context.SaveChanges();
+            }
+        }
+
+        public void DeleteCategory(int categoyryId)
+        {
+            using (SaleStoreDbContext context = new SaleStoreDbContext())
+            {
+                Category category = GetCategoryByID(categoyryId);
+                if (category != null) {
+                    context.Categories.Remove(category);
+                    context.SaveChanges();
+                }
             }
         }
 
