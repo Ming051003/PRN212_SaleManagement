@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessObjects.Models;
 
@@ -24,12 +26,8 @@ public partial class SaleStoreDbContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("server =BUIMINH; database = SaleStoreDB;uid=sa;pwd=123;TrustServerCertificate=true");
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("server =BUIMINH; database = SaleStoreDB;uid=sa;pwd=123;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,7 +44,7 @@ public partial class SaleStoreDbContext : DbContext
 
         modelBuilder.Entity<Member>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B18F395AC23");
+            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B1824D7EF1B");
 
             entity.ToTable("Member");
 
@@ -69,7 +67,7 @@ public partial class SaleStoreDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF00054B8D");
+            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF5B644078");
 
             entity.ToTable("Order");
 
@@ -80,13 +78,12 @@ public partial class SaleStoreDbContext : DbContext
 
             entity.HasOne(d => d.Member).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.MemberId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Order__MemberId__5441852A");
+                .HasConstraintName("FK_Order_Member");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D36C3E544931");
+            entity.HasKey(e => new { e.OrderId, e.ProductId });
 
             entity.ToTable("OrderDetail");
 
@@ -95,11 +92,12 @@ public partial class SaleStoreDbContext : DbContext
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderDeta__Order__52593CB8");
+                .HasConstraintName("FK_OrderDetail_Order");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__OrderDeta__Produ__534D60F1");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_OrderDetail_Product");
         });
 
         modelBuilder.Entity<Product>(entity =>
