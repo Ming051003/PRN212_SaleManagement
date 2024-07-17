@@ -23,18 +23,10 @@ namespace WinformApp
             productRepository = new ProductRepository();
             categoryRepository = new CategoryRepository();
         }
-       
 
-        private void btnSearch_Click(object sender, System.EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-
-        private void btnCreate_Click(object sender, System.EventArgs e)
-        {
-            if(txtProductName.Text == null)
+            if (txtProductName.Text == null)
             {
                 MessageBox.Show("Please enter an Product Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -50,63 +42,21 @@ namespace WinformApp
             }
             product.UnitsInStock = int.Parse(txtUnitInStock.Text.ToString());
             product.CategoryId = int.Parse(cboCategory.SelectedValue.ToString());
-            product.Weight =txtWeight.Text;
+            product.Weight = txtWeight.Text;
             product.UnitPrice = decimal.Parse(txtUnitPrice.Text);
 
             productRepository.AddProduct(product);
             MessageBox.Show("Added Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadData();
             ClearData();
-
         }
 
-        private void btnDelete_Click(object sender, System.EventArgs e)
-        {
 
-        }
+        
 
-        private void btnUpdate_Click(object sender, System.EventArgs e)
-        {
-            if (txtProductID.Text != null && txtProductName.Text != null)
-            {
-                int productID;
-                if (int.TryParse(txtProductID.Text, out productID))
-                {
-                    Product product = productRepository.GetProductById(productID);
-                   
-                    product.ProductName = txtProductName.Text;
-                    //if (productRepository.GetAllProducts().Where(p => p.ProductName.Equals(txtProductName.Text)).FirstOrDefault() != null)
-                    //{
 
-                    //    MessageBox.Show("Prouduct Name already exists. Please enter a different product name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    txtProductName.Focus(); // Đặt focus lại vào textbox email để người dùng nhập lại
-                    //    return;
-                    //}
-                    product.UnitsInStock = int.Parse(txtUnitInStock.Text);
-                    product.CategoryId = int.Parse(cboCategory.SelectedValue.ToString());
-                    product.Weight = txtWeight.Text;
-                    product.UnitPrice = decimal.Parse(txtUnitPrice.Text);
 
-                    productRepository.UpdateProduct(product);
-                    MessageBox.Show("Updated Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                    ClearData();
-                }
-                else
-                {
-                    MessageBox.Show("Product ID is empty. Please choose a different ID.",
-                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void frmProducts_Load(object sender, EventArgs e)
-        {
-            LoadData();
-            LoadCate();
-        }
-
-        public void LoadData()
+public void LoadData()
         {
             dgvProductList.DataSource = productRepository.GetAllProducts().Select(p => new
             {
@@ -157,9 +107,93 @@ namespace WinformApp
             btnUpdate.Enabled = true;
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void frmProducts_Load_1(object sender, EventArgs e)
+        {
+            LoadData();
+            LoadCate();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (txtProductID.Text != null && txtProductName.Text != null)
+            {
+                int productID;
+                if (int.TryParse(txtProductID.Text, out productID))
+                {
+                    Product product = productRepository.GetProductById(productID);
+
+                    product.ProductName = txtProductName.Text;
+                    //if (productRepository.GetAllProducts().Where(p => p.ProductName.Equals(txtProductName.Text)).FirstOrDefault() != null)
+                    //{
+
+                    //    MessageBox.Show("Prouduct Name already exists. Please enter a different product name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    txtProductName.Focus(); // Đặt focus lại vào textbox email để người dùng nhập lại
+                    //    return;
+                    //}
+                    product.UnitsInStock = int.Parse(txtUnitInStock.Text);
+                    product.CategoryId = int.Parse(cboCategory.SelectedValue.ToString());
+                    product.Weight = txtWeight.Text;
+                    product.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+
+                    productRepository.UpdateProduct(product);
+                    MessageBox.Show("Updated Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearData();
+                }
+                else
+                {
+                    MessageBox.Show("Product ID is empty. Please choose a different ID.",
+                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int prodID;
+            if (int.TryParse(txtProductID.Text, out prodID))
+            {
+                if (prodID != null)
+                {
+                    if (MessageBox.Show("Do you want to delete it?", "Warning", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        productRepository.DeleteProduct(prodID);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Product ID is empty. Please choose a different ID.",
+                  "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            LoadData();
+            ClearData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = txtSearchProduct.Text.Trim().ToLower();
+            var list = productRepository.GetAllProducts().Where(p => p.ProductName.ToLower().Contains(keyword)).Select(p => new
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                UnitStock = p.UnitsInStock,
+                //CategoryId = p.CategoryId,
+                CategoryName = p.Category.CategoryName,
+                Weitght = p.Weight,
+                UnitPrice = p.UnitPrice
+            }).ToList();
+            dgvProductList.DataSource = list;
         }
     }
 }

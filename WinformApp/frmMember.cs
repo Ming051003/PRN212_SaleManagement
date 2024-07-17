@@ -58,12 +58,12 @@ namespace WinformApp
                 {
                     Member member = memberRepository.GetMemberById(memberID);
                     member.Email = txtEmail.Text.Trim();
-                    if (memberRepository.GetAllMembers().Where(m => m.Email.Equals(member.Email)).FirstOrDefault() != null)
-                    {
-                        MessageBox.Show("Email already exists. Please enter a different email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtEmail.Focus(); // Đặt focus lại vào textbox email để người dùng nhập lại
-                        return;
-                    }
+                    //if (memberRepository.GetAllMembers().Where(m => m.Email.Equals(member.Email)).FirstOrDefault() != null)
+                    //{
+                    //    MessageBox.Show("Email already exists. Please enter a different email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    txtEmail.Focus(); // Đặt focus lại vào textbox email để người dùng nhập lại
+                    //    return;
+                    //}
                     member.City = txtCity.Text.Trim();
                     member.Country = txtCountry.Text.Trim();
                     member.Role = txtRole.Text.Trim();

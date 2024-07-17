@@ -114,11 +114,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 13.8F);
-            label2.Location = new Point(318, 117);
+            label2.Location = new Point(291, 126);
             label2.Name = "label2";
-            label2.Size = new Size(225, 26);
+            label2.Size = new Size(243, 26);
             label2.TabIndex = 5;
-            label2.Text = "Welcome to FUStore";
+            label2.Text = "Welcome to PRNStore";
             // 
             // frmMain
             // 

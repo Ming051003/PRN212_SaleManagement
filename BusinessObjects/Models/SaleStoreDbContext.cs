@@ -27,7 +27,7 @@ public partial class SaleStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server =BUIMINH; database = SaleStoreDB;uid=sa;pwd=123;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("server =BUIMINH; database = PRN212_PROJECT;uid=sa;pwd=123;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,7 +44,7 @@ public partial class SaleStoreDbContext : DbContext
 
         modelBuilder.Entity<Member>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B1824D7EF1B");
+            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B18B6F53178");
 
             entity.ToTable("Member");
 
@@ -67,10 +67,11 @@ public partial class SaleStoreDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF5B644078");
+            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF89E3AA73");
 
             entity.ToTable("Order");
 
+            entity.Property(e => e.OrderId).ValueGeneratedNever();
             entity.Property(e => e.Freight).HasColumnType("money");
             entity.Property(e => e.OrderDate).HasColumnType("datetime");
             entity.Property(e => e.RequiredDate).HasColumnType("datetime");
@@ -78,26 +79,22 @@ public partial class SaleStoreDbContext : DbContext
 
             entity.HasOne(d => d.Member).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.MemberId)
-                .HasConstraintName("FK_Order_Member");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Order__MemberId__5165187F");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => new { e.OrderId, e.ProductId });
+            entity.HasKey(e => e.OrderId).HasName("PK__OrderDet__C3905BCF91366A96");
 
             entity.ToTable("OrderDetail");
 
+            entity.Property(e => e.OrderId).ValueGeneratedNever();
             entity.Property(e => e.UnitPrice).HasColumnType("money");
-
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.OrderId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_OrderDetail_Order");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_OrderDetail_Product");
+                .HasConstraintName("FK__OrderDeta__Produ__403A8C7D");
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -116,7 +113,8 @@ public partial class SaleStoreDbContext : DbContext
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
-                .HasConstraintName("FK__Product__Categor__4F7CD00D");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Product__Categor__4222D4EF");
         });
 
         OnModelCreatingPartial(modelBuilder);

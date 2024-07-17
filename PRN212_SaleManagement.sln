@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{C84C644B-9CA3-4708-8C61-7D2F04031BB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{C84C644B-9CA3-4708-8C61-7D2F04031BB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{BB86E179-F307-42C6-89EF-B2CE5B9F61D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{BB86E179-F307-42C6-89EF-B2CE5B9F61D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessObjects", "DataAccessObjects\DataAccessObjects.csproj", "{0D11015E-6E86-4250-BBB5-21C07BBA5865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessObjects", "DataAccessObjects\DataAccessObjects.csproj", "{0D11015E-6E86-4250-BBB5-21C07BBA5865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformApp", "WinformApp\WinformApp.csproj", "{32A65CF0-927D-4FDA-91A8-0F06AB50CC92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinformApp", "WinformApp\WinformApp.csproj", "{32A65CF0-927D-4FDA-91A8-0F06AB50CC92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
